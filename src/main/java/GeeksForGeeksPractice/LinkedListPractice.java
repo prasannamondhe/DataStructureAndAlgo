@@ -201,6 +201,24 @@ public class LinkedListPractice {
         head = prev;
     }
 
+    public Node reverseTheListTillGivenNum(Node head, int num){
+        Node temp = head;
+        Node prev= null;
+        Node next = null;
+        int count = 0;
+        while(temp !=null && count != num){
+            next = temp.next;
+            temp.next = prev;
+            prev = temp;
+            temp = next;
+            count++;
+        }
+        if (next != null)
+            head.next = reverseTheListTillGivenNum(next, num);
+
+        return prev;
+    }
+
 
     public void printLinkedList() {
         Node curr = this.head;
@@ -235,6 +253,27 @@ public class LinkedListPractice {
         }
     }
 
+    public void moveLastElementToFirst(){
+        Node temp = head;
+        Node prev = null;
+        Node curr = null;
+        int count = 1;
+        int len = findLength();
+        while (temp != null){
+            if(count == (len-1)){
+                prev = temp;
+            }
+            if(count == len){
+                curr = temp;
+            }
+            temp = temp.next;
+            count++;
+        }
+        curr.next = head.next;
+        prev.next = null;
+        head = curr;
+    }
+
     public void swapElement(int x, int y){
         Node temp = head;
         while (temp != null){
@@ -246,6 +285,20 @@ public class LinkedListPractice {
                 temp.data = y;
             }
             temp = temp.next;
+        }
+    }
+
+    public void deleteAlternateLinkedList(){
+        Node prev = head;
+        Node now = head.next;
+        while( prev != null && now != null){
+            prev.next = now.next;
+
+            now = null;
+            prev = prev.next;
+            if(prev !=null){
+                now = prev.next;
+            }
         }
     }
 
@@ -329,6 +382,26 @@ public class LinkedListPractice {
         //Swap nodes in a linked list without swapping data
         System.out.println("Swap 8 and 9 ");
         linkedListPracticeDemo.swapElement(8,9);
+        linkedListPracticeDemo.printLinkedList();
+
+        //Move last element to first
+        System.out.println("Move last element to first ");
+        linkedListPracticeDemo.moveLastElementToFirst();
+        linkedListPracticeDemo.printLinkedList();
+
+        //Reverse a linked list
+        System.out.println("Reversed linked list is ");
+        linkedListPracticeDemo.reverseTheList();
+        linkedListPracticeDemo.printLinkedList();
+
+        //Reverse a Linked List in groups of given size
+//        System.out.println("Reverse linked list till given number ");
+//        linkedListPracticeDemo.reverseTheListTillGivenNum(linkedListPracticeDemo.head, 3);
+//        linkedListPracticeDemo.printLinkedList();
+
+        //Delete alternate nodes of a Linked List
+        System.out.println("Delete alternate nodes of a Linked List");
+        linkedListPracticeDemo.deleteAlternateLinkedList();
         linkedListPracticeDemo.printLinkedList();
     }
 }
