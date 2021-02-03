@@ -134,17 +134,6 @@ public class BinarySearchTreeNode {
         }
     }
 
-    public int depthOfNode(BinarySearchTreeNode root, int key){
-        int depth =0;
-        if(root == null){
-            return -1;
-        }else{
-            if(key == root.data){
-                return depth;
-            }else
-        }
-    }
-
     public static void main(String[] args){
         BinarySearchTreeNode treeNode = new BinarySearchTreeNode(8);
         treeNode.insert(3);
